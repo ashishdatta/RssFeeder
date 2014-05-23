@@ -4,12 +4,8 @@
  var rssFeederMainCtrl = angular.module('rssFeederMainCtrl',[]);
 
    rssFeederMainCtrl.controller('MainCtrl', ['$scope', 'rssFeeder', function ($scope, rssFeeder){
-<<<<<<< HEAD
    		$scope.items = rssFeeder.query(); 
    		console.log("$scope.items = " + $scope.items);
-   		
-=======
-   	
    		var s = rssFeeder.query(function(){
    			var as = createTVArrayFromData(s);
    			$scope.items = as;
@@ -20,7 +16,7 @@
    		//console.log(something);
    		//createTVArrayFromData(something);
    		// $scope.items = something.feed;
->>>>>>> be2c3c156c624d82b57783900d259197b6c8fa77
+
    }]);
 
 var createTVArrayFromData = function(data){
