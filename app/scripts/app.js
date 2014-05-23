@@ -1,13 +1,16 @@
 'use strict';
-
+var rssFeederApp = 
 angular
   .module('rssFeederApp', [
     'ngCookies',
     'ngResource',
     'ngSanitize',
-    'ngRoute'
-  ])
-  .config(function ($routeProvider) {
+    'ngRoute',
+    'rssFeederServices',
+    'rssFeederMainCtrl'
+  ]);
+
+  rssFeederApp.config( ['$routeProvider', function($routeProvider){
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -16,4 +19,5 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-  });
+  }]);
+     

@@ -1,4 +1,4 @@
 RssFeeder
 =========
 
-iTunes Top 50 rssfeed w/AngularJS
+iTunes Top 50 List using MEAN stack

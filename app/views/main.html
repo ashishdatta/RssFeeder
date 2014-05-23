@@ -10,19 +10,13 @@
             <span class="icon-bar"></span>
           </button>
 
-          <a class="navbar-brand" href="#">Teddy's challenge</a>
+          <a class="navbar-brand" href="#">RssFeeder</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">TV</a></li>
             <li><a href="#about">Movie</a></li>
             <li><a href="#contact">Music</a></li>
-
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="../navbar/">Default</a></li>
-            <li><a href="../navbar-static-top/">Static top</a></li>
-            <li class="active"><a href="./">Fixed top</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -39,8 +33,8 @@
       <th>Author</th>
       <th>Release Date</th>
     </tr>
-    <tr ng-repeat="todo in todos">
-      <td>Some name</td>
+    <tr ng-repeat="item in items">
+      <td>{{items.feed.entry[0]["im:name"]}}</td>
       <td>some other name</td>
       <td>00/00/0000</td>
   </tbody>
