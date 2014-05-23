@@ -23,6 +23,7 @@ var createTVArrayFromData = function(data){
 	for (var i = data.feed.entry.length - 1; i >= 0; i--) {
 		var entry = data.feed.entry[i];
 		var obj ={};
+		obj.image = entry['im:image'][0].label;
 		obj.name = entry['im:name'].label;
 		obj.artist = entry['im:artist'].label;
 		obj.releaseDate = entry['im:releaseDate'].attributes.label;
