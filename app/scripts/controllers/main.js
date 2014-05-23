@@ -2,9 +2,6 @@
 
 angular.module('rssFeederApp')
   .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+    $scope.todos = ['Index 1', 'Index 2', 'Index 3','Index 5'];
+
   });
