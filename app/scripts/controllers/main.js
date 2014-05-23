@@ -4,9 +4,23 @@
  var rssFeederMainCtrl = angular.module('rssFeederMainCtrl',[]);
 
    rssFeederMainCtrl.controller('MainCtrl', ['$scope', 'rssFeeder', function ($scope, rssFeeder){
+<<<<<<< HEAD
    		$scope.items = rssFeeder.query(); 
    		console.log("$scope.items = " + $scope.items);
    		
+=======
+   	
+   		var s = rssFeeder.query(function(){
+   			var as = createTVArrayFromData(s);
+   			$scope.items = as;
+   		});
+   	//	$scope.items = rssFeeder.query(); 
+   	//	console.log("$scope.items = " + $scope.items);
+   		// var something = rssFeeder.query(); 
+   		//console.log(something);
+   		//createTVArrayFromData(something);
+   		// $scope.items = something.feed;
+>>>>>>> be2c3c156c624d82b57783900d259197b6c8fa77
    }]);
 
 var createTVArrayFromData = function(data){
@@ -23,6 +37,20 @@ var createTVArrayFromData = function(data){
 	return arr;
 }
 
+/*
+angular.module('rssFeederApp')
+  .controller('MainCtrl', function ($scope) {
+	var obj = jQuery.getJSON('https://itunes.apple.com/us/rss/topmovies/limit=50/json', 
+		function( data ) {
+			var arr = createTVArrayFromData(data);
+			console.log(arr);
+			$scope.todos = [{title:'rodrigo',author:'Jojo'}];
+		});
+	//grunt.log.write('Hello');
+	var s = [];
+	s.push({title:'rodrigo',author:'Jojo'});
+	s.push({title:'rodrigo',author:'Jojo'});
+	$scope.todos = s;
 
 // angular.module('rssFeederApp')
 //   .controller('MainCtrl', function ($scope) {
