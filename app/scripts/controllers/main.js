@@ -18,7 +18,15 @@ angular.module('rssFeederApp')
 	/*
 	var parsedJSON = require('app/json/movie.js');
 	grunt.log.write('Hello');*/
+/*
 	var obj = jQuery.getJSON('https://itunes.apple.com/us/rss/toptvepisodes/limit=50/json', 
+		function( data ) {
+			var arr = createTVArrayFromData(data);
+			console.log(arr);
+			$scope.todos = [{title:'rodrigo',author:'Jojo'}];
+		});
+*/
+	var obj = jQuery.getJSON('https://itunes.apple.com/us/rss/topmovies/limit=50/json', 
 		function( data ) {
 			var arr = createTVArrayFromData(data);
 			console.log(arr);
