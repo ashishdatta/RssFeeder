@@ -4,9 +4,9 @@
  var rssFeederMainCtrl = angular.module('rssFeederMainCtrl',[]);
 
    rssFeederMainCtrl.controller('MainCtrl', ['$scope', 'rssFeeder', function ($scope, rssFeeder){
-   		$scope.items = rssFeeder.query(); 
-   		console.log("$scope.items = " + $scope.items);
-   		var s = rssFeeder.query(function(){
+   		$scope.items = rssFeeder.TV.query(); 
+   		// console.log("$scope.items = " + $scope.items);
+   		var s = rssFeeder.TV.query(function(){
    			var as = createTVArrayFromData(s);
    			$scope.items = as;
    		});
