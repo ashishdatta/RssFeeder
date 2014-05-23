@@ -13,7 +13,7 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .otherwise({
+      .otherwise`({
         redirectTo: '/'
       });
   });
