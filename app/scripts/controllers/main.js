@@ -6,10 +6,7 @@
    rssFeederMainCtrl.controller('MainCtrl', ['$scope', 'rssFeeder', function ($scope, rssFeeder){
    		$scope.items = rssFeeder.query(); 
    		console.log("$scope.items = " + $scope.items);
-   		// var something = rssFeeder.query(); 
-   		//console.log(something);
-   		//createTVArrayFromData(something);
-   		// $scope.items = something.feed;
+   		
    }]);
 
 var createTVArrayFromData = function(data){
