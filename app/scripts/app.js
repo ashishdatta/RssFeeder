@@ -16,6 +16,14 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
+      .when('#movies', {
+        templateUrl: 'views/main.html',
+        controller: 'MainCtrl'
+      })
+      .when('#music', {
+        templateUrl: 'views/main.html',
+        controller: 'MainCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

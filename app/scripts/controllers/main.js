@@ -4,22 +4,37 @@
  var rssFeederMainCtrl = angular.module('rssFeederMainCtrl',[]);
 
    rssFeederMainCtrl.controller('MainCtrl', ['$scope', 'rssFeeder', function ($scope, rssFeeder){
-   		$scope.items = rssFeeder.TV.query(); 
-   		// console.log("$scope.items = " + $scope.items);
-   		var s = rssFeeder.TV.query(function(){
-   			var as = createTVArrayFromData(s);
-   			$scope.items = as;
-   		});
-   	//	$scope.items = rssFeeder.query(); 
-   	//	console.log("$scope.items = " + $scope.items);
-   		// var something = rssFeeder.query(); 
-   		//console.log(something);
-   		//createTVArrayFromData(something);
-   		// $scope.items = something.feed;
+ 
+   		  $scope.list = function(data){
+   		 	switch(data)
+   		 	{
+   		 		case 'Music':
+	   		 	//$scope.items = rssFeeder.Music.query(); 
+	   				var s = rssFeeder.Music.query(function(z){
+	   				$scope.items = createArrayFromData(z);
+	   				});
+	   			break;
+	   			case 'TV':
+	   			 //$scope.items = rssFeeder.TV.query(); 
+	   				var s = rssFeeder.TV.query(function(z){
+	   				$scope.items = createArrayFromData(z);
+	   				});
+	   			break;
+	   			case 'Movies':
+	   			//$scope.items = rssFeeder.Movies.query(); 
+	   			var s = rssFeeder.Movies.query(function(z){
+	   				$scope.items = createArrayFromData(z);
+	   				});
+	   				break;
+	   			default: break;
+
+
+   		}
+   		 }
 
    }]);
 
-var createTVArrayFromData = function(data){
+var createArrayFromData = function(data){
 	var arr =[];
 	console.log(data.feed);
 	for (var i = data.feed.entry.length - 1; i >= 0; i--) {
