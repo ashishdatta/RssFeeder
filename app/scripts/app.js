@@ -7,7 +7,7 @@ var rssFeederApp = angular.module('rssFeederApp',
     'ngSanitize',
     'ngRoute',
     'rssFeederServices',
-    'rssFeederMainCtrl'
+    'rssFeederMainCtrl',
 ]);
 
 rssFeederApp.config( ['$routeProvider', function($routeProvider){
@@ -16,6 +16,14 @@ rssFeederApp.config( ['$routeProvider', function($routeProvider){
       templateUrl: 'views/main.html',
       controller: 'MainCtrl'
     })
+    // .when('/movies', {
+    //   templateUrl: 'views/main.html',
+    //   controller: 'MainCtrl'
+    // })
+    // .when('/music', {
+    //   templateUrl: 'views/main.html',
+    //   controller: 'MainCtrl'
+    // })
     .otherwise({
       redirectTo: '/'
     });
