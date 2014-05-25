@@ -15,31 +15,50 @@ rssFeederMainCtrl.controller('MainCtrl', ['$scope', 'rssFeeder',
    						$scope.items = createArrayFromData(JSON);
    				});
    				break;
-
    			case 'TV Shows':
    				rssFeeder.TV.query(
    					function(JSON) {
    						$scope.items = createArrayFromData(JSON);
    				});
    				break;
-
    			case 'Movies':
    				rssFeeder.Movies.query(
    					function(JSON) {
    						$scope.items = createArrayFromData(JSON);
    				});
    				break;
-
    			default:
    				break;
 			}
-
-			$scope.followResourceURL = function(item) {
-				console.log("Clicked -> " +  item.url);
-				window.open(item.url, '_blank');
-			}
+        }
+		$scope.followResourceURL = function(item) {
+			console.log("Clicked -> " +  item.url);
+			window.open(item.url, '_blank');
 		}
 	}]);
+
+// enable/disable 'active' state of <li> media resource options
+function changeClass(obj) {
+    switch(obj.id) {
+        case 'tv':
+            document.getElementById("tv").setAttribute("class", "active");
+            document.getElementById("movies").setAttribute("class", "inactive");
+            document.getElementById("albums").setAttribute("class", "inactive");
+            break;
+        case 'movies':
+            document.getElementById("tv").setAttribute("class", "inactive");
+            document.getElementById("movies").setAttribute("class", "active");
+            document.getElementById("albums").setAttribute("class", "inactive");
+            break;
+        case 'albums':
+            document.getElementById("tv").setAttribute("class", "inactive");
+            document.getElementById("movies").setAttribute("class", "inactive");
+            document.getElementById("albums").setAttribute("class", "active");
+            break;
+        default:
+            break;
+    }
+}
 
 var createArrayFromData = function(data) {
 	var arr = [];
