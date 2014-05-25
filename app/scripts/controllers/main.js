@@ -38,7 +38,7 @@ rssFeederMainCtrl.controller('MainCtrl', ['$scope', 'rssFeeder',
 	}]);
 
 // enable/disable 'active' state of <li> media resource options
-function changeClass(obj) {
+var changeClass = function(obj) {
     switch(obj.id) {
         case 'tv':
             document.getElementById("tv").setAttribute("class", "active");
