@@ -17,3 +17,19 @@ rssFeederServices.factory('rssFeeder', ['$resource',
 		};
 	}]);
 
+// var rssFeederExchangerServices = angular.module('rssFeederExchangerServices', []);
+
+// rssFeederExchangerServices.factory('exchangerServices', function() {
+// 	var savedData = {};
+
+// 	function set(data) {
+// 		savedData = data;
+// 		console.log(savedData);
+// 	}
+
+// 	function get() {
+// 		return savedData;
+// 	}
+
+// 	return { set : set, get : get };
+// });
