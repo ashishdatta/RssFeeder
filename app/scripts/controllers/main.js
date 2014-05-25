@@ -1,45 +1,72 @@
 'use strict';
 
- 
- var rssFeederMainCtrl = angular.module('rssFeederMainCtrl',[]);
+var rssFeederMainCtrl = angular.module('rssFeederMainCtrl',[]);
 
-   rssFeederMainCtrl.controller('MainCtrl', ['$scope', 'rssFeeder', function ($scope, rssFeeder){
- 
-   		  $scope.list = function(data){
-   		 	switch(data)
-   		 	{
-   		 		case 'Music':
-	   		 	//$scope.items = rssFeeder.Music.query(); 
-	   				var s = rssFeeder.Music.query(function(z){
-	   				$scope.items = createArrayFromData(z);
-	   				});
-	   			break;
-	   			case 'TV':
-	   			 //$scope.items = rssFeeder.TV.query(); 
-	   				var s = rssFeeder.TV.query(function(z){
-	   				$scope.items = createArrayFromData(z);
-	   				});
-	   			break;
-	   			case 'Movies':
-	   			//$scope.items = rssFeeder.Movies.query(); 
-	   			var s = rssFeeder.Movies.query(function(z){
-	   				$scope.items = createArrayFromData(z);
-	   				});
-	   				break;
-	   			default: break;
+// safe for minification
+rssFeederMainCtrl.controller('MainCtrl', ['$scope', 'rssFeeder',
+	function ($scope, rssFeeder) {
+		$scope.list = function(data) {
+			$scope.mediaResource = data;
+		 	switch(data)
+		 	{
+		 		case 'Albums':
+   				rssFeeder.Albums.query(
+   					function(JSON) {
+   						$scope.items = createArrayFromData(JSON);
+   				});
+   				break;
+   			case 'TV Shows':
+   				rssFeeder.TV.query(
+   					function(JSON) {
+   						$scope.items = createArrayFromData(JSON);
+   				});
+   				break;
+   			case 'Movies':
+   				rssFeeder.Movies.query(
+   					function(JSON) {
+   						$scope.items = createArrayFromData(JSON);
+   				});
+   				break;
+   			default:
+   				break;
+			}
+        }
+		$scope.followResourceURL = function(item) {
+			console.log("Clicked -> " +  item.url);
+			window.open(item.url, '_blank');
+		}
+	}]);
 
+// enable/disable 'active' state of <li> media resource options
+var changeClass = function(obj) {
+    switch(obj.id) {
+        case 'tv':
+            document.getElementById("tv").setAttribute("class", "active");
+            document.getElementById("movies").setAttribute("class", "inactive");
+            document.getElementById("albums").setAttribute("class", "inactive");
+            break;
+        case 'movies':
+            document.getElementById("tv").setAttribute("class", "inactive");
+            document.getElementById("movies").setAttribute("class", "active");
+            document.getElementById("albums").setAttribute("class", "inactive");
+            break;
+        case 'albums':
+            document.getElementById("tv").setAttribute("class", "inactive");
+            document.getElementById("movies").setAttribute("class", "inactive");
+            document.getElementById("albums").setAttribute("class", "active");
+            break;
+        default:
+            break;
+    }
+}
 
-   		}
-   		 }
-
-   }]);
-
-var createArrayFromData = function(data){
-	var arr =[];
-	console.log(data.feed);
+var createArrayFromData = function(data) {
+	var arr = [];
+	console.log('Data feed: ' + data.feed);
 	for (var i = data.feed.entry.length - 1; i >= 0; i--) {
 		var entry = data.feed.entry[i];
-		var obj ={};
+		var obj = {};
+		obj.url = entry['id'].label;
 		obj.image = entry['im:image'][0].label;
 		obj.name = entry['im:name'].label;
 		obj.artist = entry['im:artist'].label;
@@ -48,36 +75,3 @@ var createArrayFromData = function(data){
 	};
 	return arr;
 }
-
-/*
-angular.module('rssFeederApp')
-  .controller('MainCtrl', function ($scope) {
-	var obj = jQuery.getJSON('https://itunes.apple.com/us/rss/topmovies/limit=50/json', 
-		function( data ) {
-			var arr = createTVArrayFromData(data);
-			console.log(arr);
-			$scope.todos = [{title:'rodrigo',author:'Jojo'}];
-		});
-	//grunt.log.write('Hello');
-	var s = [];
-	s.push({title:'rodrigo',author:'Jojo'});
-	s.push({title:'rodrigo',author:'Jojo'});
-	$scope.todos = s;
-
-// angular.module('rssFeederApp')
-//   .controller('MainCtrl', function ($scope) {
-// 	/*
-// 	var parsedJSON = require('app/json/movie.js');
-// 	grunt.log.write('Hello');*/
-// 	var obj = jQuery.getJSON('https://itunes.apple.com/us/rss/toptvepisodes/limit=50/json', 
-// 		function( data ) {
-// 			var arr = createTVArrayFromData(data);
-// 			console.log(arr);
-// 			$scope.todos = [{title:'rodrigo',author:'Jojo'}];
-// 		});
-// 	//grunt.log.write('Hello');
-// 	var s = [];
-// 	s.push({title:'rodrigo',author:'Jojo'});
-// 	s.push({title:'rodrigo',author:'Jojo'});
-// 	$scope.todos = s; 
-

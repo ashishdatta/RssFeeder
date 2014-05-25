@@ -1,31 +1,22 @@
 'use strict';
-var rssFeederApp = 
-angular
-  .module('rssFeederApp', [
-    'ngCookies',
+
+var rssFeederApp = angular.module('rssFeederApp',
+  // dependencies
+  ['ngCookies',
     'ngResource',
     'ngSanitize',
     'ngRoute',
     'rssFeederServices',
     'rssFeederMainCtrl'
-  ]);
+]);
 
-  rssFeederApp.config( ['$routeProvider', function($routeProvider){
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .when('#movies', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .when('#music', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-  }]);
-     
+rssFeederApp.config( ['$routeProvider', function($routeProvider){
+  $routeProvider
+    .when('/', {
+      templateUrl: 'views/main.html',
+      controller: 'MainCtrl'
+    })
+    .otherwise({
+      redirectTo: '/'
+    });
+}]);
