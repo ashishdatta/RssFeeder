@@ -38,7 +38,7 @@
 <form class="form-search">
   <div class="input-append">
     <input type="text" ng-model="search" class="search-query" style="width: 300px">
-    <button type="submit" class="btn">Search</button>
+    <button type="submit" class="btn"><span class="glyphicon glyphicon-zoom-in"></span></button>
   </div>
   <p></p>
 
@@ -59,7 +59,7 @@
         <td>{{item.artist}}</td>
         <td>{{item.releaseDate}}</td>
         <td>
-          <a class="btn btn-primary btn-sm" href="/#/details" ng-click="setIndexForDetails($index, mediaResource)">View</a>
+          <a class="btn btn-primary btn-sm" href="/#/details" ng-click="setIndexForDetails($index, mediaResource)"><span class="glyphicon glyphicon-arrow-right"></span></a>
         </td>
       </tr>
     </tbody>
