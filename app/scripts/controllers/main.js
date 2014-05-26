@@ -1,44 +1,73 @@
 'use strict';
 
-var rssFeederMainCtrl = angular.module('rssFeederMainCtrl',[]);
+// DETAILS CONTROLLER ==========================================================
+var rssFeederDetailsCtrl = angular.module('rssFeederDetailsCtrl',[]);
+var prevView;
 
-// safe for minification
-rssFeederMainCtrl.controller('MainCtrl', ['$scope', 'rssFeeder',
-	function ($scope, rssFeeder) {
+rssFeederDetailsCtrl.controller('DetailsCtrl', ['$scope',
+  function ($scope) {
+    console.log('in DetailsCtrl');
 
-		$scope.list = function(data) {
-      console.log('in list');
-			$scope.mediaResource = data;
-		 	switch(data)
-		 	{
-		 		case 'Albums':
-   				rssFeeder.Albums.query(
-   					function(JSON) {
-   						$scope.items = createArrayFromData(JSON, data);
-   				});
-   				break;
-   			case 'TV Shows':
-   				rssFeeder.TV.query(
-   					function(JSON) {
-   						$scope.items = createArrayFromData(JSON, data);
-   				});
-   				break;
-   			case 'Movies':
-   				rssFeeder.Movies.query(
-   					function(JSON) {
-   						$scope.items = createArrayFromData(JSON, data);
-   				});
-   				break;
-   			default:
-   				break;
-			}
+    $scope.details = arr[index];
+    console.log($scope.details);
+
+    $scope.backToList = function() {
+      // use prevView to call list() again so that when going back from
+      // the details page the user sees the listview as before
+      console.log('backToList, prev = ' + prevView);
     }
-		$scope.followResourceURL = function(item) {
-			console.log("Clicked -> " +  item.url);
-			window.open(item.url, '_blank');
-		}
-	}]);
+}]);
 
+// MAIN CONTROLLER =============================================================
+var rssFeederMainCtrl = angular.module('rssFeederMainCtrl',[]);
+var index;
+
+rssFeederMainCtrl.controller('MainCtrl', ['$scope', 'rssFeeder',
+  function ($scope, rssFeeder) {
+    console.log('in MainCtrl');
+
+    $scope.list = function(data) {
+      console.log('in list');
+      $scope.mediaResource = data;
+      switch(data)
+      {
+        case 'Albums':
+          rssFeeder.Albums.query(
+            function(JSON) {
+              $scope.items = createArrayFromData(JSON, data);
+          });
+          break;
+        case 'TV Shows':
+          rssFeeder.TV.query(
+            function(JSON) {
+              $scope.items = createArrayFromData(JSON, data);
+          });
+          break;
+        case 'Movies':
+          rssFeeder.Movies.query(
+            function(JSON) {
+              $scope.items = createArrayFromData(JSON, data);
+          });
+          break;
+        default:
+          break;
+      }
+    }
+
+    $scope.followResourceURL = function(item) {
+      console.log('in followResourceURL');
+      window.open(item.url, '_blank');
+    }
+
+    $scope.setIndexForDetails = function($index, media) {
+      console.log('in setIndexForDetails');
+      index = $index;
+      prevView = media;
+      console.log('item at arr[' + index + '], type = ' + media);
+    }
+  }]);
+
+// FUNCTIONS ===================================================================
 // enable/disable 'active' state of <li> media resource options
 var changeClass = function(obj) {
   console.log('in changeClass');
@@ -64,32 +93,30 @@ var changeClass = function(obj) {
 }
 
 var arr = [];
-
 var createArrayFromData = function(JSON, media) {
-	console.log('JSON feed: ' + JSON.feed);
+  console.log('in createArrayFromData');
   console.log(media);
   arr = [];
 
-	for (var i = JSON.feed.entry.length - 1; i >= 0; i--) {
+  for (var i = JSON.feed.entry.length - 1; i >= 0; i--) {
     var obj         = {};
     var entry       = JSON.feed.entry[i];
-		obj.url         = entry['id'].label;
-		obj.image       = entry['im:image'][0].label;
+    obj.url         = entry['id'].label;
+    obj.image       = entry['im:image'][0].label;
     obj.imageBig    = entry['im:image'][2].label;
-		obj.name        = entry['im:name'].label;
+    obj.name        = entry['im:name'].label;
     obj.price       = entry['im:price'].label;
-		obj.artist      = entry['im:artist'].label;
+    obj.artist      = entry['im:artist'].label;
     obj.genre       = entry['category'].attributes.label;
-		obj.releaseDate = entry['im:releaseDate'].attributes.label;
-    // obj.rights      = entry['rights'].label;
+    obj.releaseDate = entry['im:releaseDate'].attributes.label;
 
     if (media == 'Movies' || media == 'TV Shows') {
       obj.summary   = entry['summary'].label;
     }
 
-		arr.push(obj);
-	};
+    arr.push(obj);
+  };
 
   console.log(arr);
-	return arr;
+  return arr;
 }

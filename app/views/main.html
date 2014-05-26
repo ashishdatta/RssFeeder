@@ -35,23 +35,26 @@
   <h2>iTunes' Chart Toppers <span class="label label-info"> {{ items.length }}</span> {{ mediaResource }}</h2>
 </div>
 
-<table class="table table-striped table-hover">
+<table class="table table-hover table-condensed">
   <tbody>
     <tr>
       <th>#</th>
       <th>Thumbnail</th>
       <th>Title</th>
-      <th>Author</th>
+      <th>Artist</th>
       <th>Release Date</th>
       <th>Details</th>
     </tr>
-    <tr ng-repeat="item in items" ng-click="followResourceURL(item)">
+    <tr ng-repeat="item in items" >
       <td>{{$index+1}}</td>
       <td><img ng-src="{{item.image}}"></td>
       <td><i>{{item.name}}</i></td>
       <td>{{item.artist}}</td>
       <td>{{item.releaseDate}}</td>
-      <td><button type="submit" class="btn btn-primary btn-sm">View</button></td>
+      <td>
+        <a class="btn btn-primary btn-sm" href="/#/details" ng-click="setIndexForDetails($index, mediaResource)">View</a>
+      </td>
+    </tr>
   </tbody>
 </table>
 
