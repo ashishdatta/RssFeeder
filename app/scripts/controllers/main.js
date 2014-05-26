@@ -16,6 +16,11 @@ rssFeederDetailsCtrl.controller('DetailsCtrl', ['$scope',
       // the details page the user sees the listview as before
       console.log('backToList, prev = ' + prevView);
     }
+
+    $scope.followResourceURL = function(item) {
+      console.log('in followResourceURL');
+      window.open(item.url, '_blank');
+    }
 }]);
 
 // MAIN CONTROLLER =============================================================
@@ -28,16 +33,17 @@ rssFeederMainCtrl.controller('MainCtrl', ['$scope', 'rssFeeder',
 
     $scope.list = function(data) {
       console.log('in list');
+      $scope.wordTop = " ~ Top";
       $scope.mediaResource = data;
       switch(data)
       {
-        case 'Albums':
+        case 'Music Albums':
           rssFeeder.Albums.query(
             function(JSON) {
               $scope.items = createArrayFromData(JSON, data);
           });
           break;
-        case 'TV Shows':
+        case 'TV Show Episodes':
           rssFeeder.TV.query(
             function(JSON) {
               $scope.items = createArrayFromData(JSON, data);
@@ -52,11 +58,6 @@ rssFeederMainCtrl.controller('MainCtrl', ['$scope', 'rssFeeder',
         default:
           break;
       }
-    }
-
-    $scope.followResourceURL = function(item) {
-      console.log('in followResourceURL');
-      window.open(item.url, '_blank');
     }
 
     $scope.setIndexForDetails = function($index, media) {

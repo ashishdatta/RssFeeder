@@ -1,4 +1,4 @@
-<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -12,7 +12,7 @@
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li id='tv' class='inactive' onclick="changeClass(this)">
-          <a href="" ng-click="list('TV Shows')">
+          <a href="" ng-click="list('TV Show Episodes')">
             TV
           </a>
         </li>
@@ -22,50 +22,50 @@
           </a>
         </li>
         <li id='albums' class='inactive' onclick="changeClass(this)">
-          <a href="" ng-click="list('Albums')">
+          <a href="" ng-click="list('Music Albums')">
             Music
           </a>
         </li>
       </ul>
+      <form class="navbar-form navbar-right">
+        <div class="input-group">
+          <input type="text" ng-model="search" class="form-control" placeholder="Search">
+            <span class="input-group-btn">
+              <button type="submit" class="btn btn-default">Submit</button>
+            </span>
+        </div>
+      </form>
     </div>
   </div>
 </div>
 
 <div class="row marketing">
-  <h2>iTunes' Chart Toppers <span class="label label-info"> {{ items.length }}</span> {{ mediaResource }}</h2>
+  <h1>iTunes' Chart Toppers</h1>
+  <h4>{{ wordTop }} <span class="label label-info">{{ items.length }}</span> {{ mediaResource }}</h4>
 </div>
 
-<form class="form-search">
-  <div class="input-append">
-    <input type="text" ng-model="search" class="search-query" style="width: 300px">
-    <button type="submit" class="btn"><span class="glyphicon glyphicon-zoom-in"></span></button>
-  </div>
-  <p></p>
-
-  <table class="table table-hover table-condensed">
-    <tbody>
-      <tr>
-        <th>#</th>
-        <th>Thumbnail</th>
-        <th>Title</th>
-        <th>Artist</th>
-        <th>Release Date</th>
-        <th>Details</th>
-      </tr>
-      <tr ng-animate="'animate'" ng-repeat="item in items | filter:search:strict" >
-        <td>{{$index+1}}</td>
-        <td><img ng-src="{{item.image}}"></td>
-        <td><i>{{item.name}}</i></td>
-        <td>{{item.artist}}</td>
-        <td>{{item.releaseDate}}</td>
-        <td>
-          <a class="btn btn-primary btn-sm" href="/#/details" ng-click="setIndexForDetails($index, mediaResource)"><span class="glyphicon glyphicon-arrow-right"></span></a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-</form>
+<table class="table table-hover table-condensed">
+  <tbody>
+    <tr>
+      <th>#</th>
+      <th>Thumbnail</th>
+      <th>Title</th>
+      <th>Artist</th>
+      <th>Release Date</th>
+      <th>Details</th>
+    </tr>
+    <tr ng-animate="'animate'" ng-repeat="item in items | filter:search:strict" >
+      <td>{{$index+1}}</td>
+      <td><img ng-src="{{item.image}}"></td>
+      <td><i>{{item.name}}</i></td>
+      <td>{{item.artist}}</td>
+      <td>{{item.releaseDate}}</td>
+      <td>
+        <a class="btn btn-primary btn-sm" href="/#/details" ng-click="setIndexForDetails($index, mediaResource)"><span class="glyphicon glyphicon-chevron-right"></span></a>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <!-- OLD TABLE VIEW -->
 <!-- <table class="table table-hover table-condensed">
@@ -98,5 +98,4 @@
 
 <div class="footer">
   <p><span class="glyphicon glyphicon-heart"></span> Ashish, Rodrigo, Andreas </p>
-
 </div>
