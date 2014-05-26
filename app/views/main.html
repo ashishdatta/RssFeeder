@@ -35,7 +35,40 @@
   <h2>iTunes' Chart Toppers <span class="label label-info"> {{ items.length }}</span> {{ mediaResource }}</h2>
 </div>
 
-<table class="table table-hover table-condensed">
+<form class="form-search">
+  <div class="input-append">
+    <input type="text" ng-model="search" class="search-query" style="width: 300px">
+    <button type="submit" class="btn">Search</button>
+  </div>
+  <p></p>
+
+  <table class="table table-hover table-condensed">
+    <tbody>
+      <tr>
+        <th>#</th>
+        <th>Thumbnail</th>
+        <th>Title</th>
+        <th>Artist</th>
+        <th>Release Date</th>
+        <th>Details</th>
+      </tr>
+      <tr ng-animate="'animate'" ng-repeat="item in items | filter:search:strict" >
+        <td>{{$index+1}}</td>
+        <td><img ng-src="{{item.image}}"></td>
+        <td><i>{{item.name}}</i></td>
+        <td>{{item.artist}}</td>
+        <td>{{item.releaseDate}}</td>
+        <td>
+          <a class="btn btn-primary btn-sm" href="/#/details" ng-click="setIndexForDetails($index, mediaResource)">View</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</form>
+
+<!-- OLD TABLE VIEW -->
+<!-- <table class="table table-hover table-condensed">
   <tbody>
     <tr>
       <th>#</th>
@@ -56,7 +89,7 @@
       </td>
     </tr>
   </tbody>
-</table>
+</table> -->
 
 <!-- We can use this to display raw JSON if the user selects a button on the navbar -->
 <pre>Data = {{items | json}}</pre>
