@@ -8,7 +8,8 @@ var rssFeederApp = angular.module('rssFeederApp',
     'ngRoute',
     'rssFeederServices',
     'rssFeederMainCtrl',
-    'rssFeederDetailsCtrl'
+    'rssFeederDetailsCtrl',
+    'ngAnimate'
 ]);
 
 rssFeederApp.config( ['$routeProvider', function($routeProvider){

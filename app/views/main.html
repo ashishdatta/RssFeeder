@@ -40,62 +40,46 @@
 </div>
 
 <div class="row marketing">
-  <h1>iTunes' Chart Toppers</h1>
+  <div class="alert alert-info alert-dismissable">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    Select a type of media above to discover the latest hits on iTunes!
+  </div>
+
+  <h1>iTunes' Chart Toppers <small><i>for Teddy</i></small></h1>
   <h4>{{ wordTop }} <span class="label label-info">{{ items.length }}</span> {{ mediaResource }}</h4>
 </div>
 
-<table class="table table-hover table-condensed">
-  <tbody>
-    <tr>
-      <th>#</th>
-      <th>Thumbnail</th>
-      <th>Title</th>
-      <th>Artist</th>
-      <th>Release Date</th>
-      <th>Details</th>
-    </tr>
-    <tr ng-animate="'animate'" ng-repeat="item in items | filter:search:strict" >
-      <td>{{$index+1}}</td>
-      <td><img ng-src="{{item.image}}"></td>
-      <td><i>{{item.name}}</i></td>
-      <td>{{item.artist}}</td>
-      <td>{{item.releaseDate}}</td>
-      <td>
-        <a class="btn btn-primary btn-sm" href="/#/details" ng-click="setIndexForDetails($index, mediaResource)"><span class="glyphicon glyphicon-chevron-right"></span></a>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<!-- OLD TABLE VIEW -->
-<!-- <table class="table table-hover table-condensed">
-  <tbody>
-    <tr>
-      <th>#</th>
-      <th>Thumbnail</th>
-      <th>Title</th>
-      <th>Artist</th>
-      <th>Release Date</th>
-      <th>Details</th>
-    </tr>
-    <tr ng-repeat="item in items" >
-      <td>{{$index+1}}</td>
-      <td><img ng-src="{{item.image}}"></td>
-      <td><i>{{item.name}}</i></td>
-      <td>{{item.artist}}</td>
+<div class="row marketing">
+  <table class="table table-hover table-condensed">
+    <tbody>
+      <tr>
+        <th>#</th>
+        <th>Thumbnail</th>
+        <th>Title</th>
+        <th>Artist</th>
+        <th>Release Date</th>
+        <th>Details</th>
+      </tr>
+      <tr ng-repeat="item in items | filter:search:strict" >
+        <td>{{$index+1}}</td>
+        <td><img ng-src="{{item.image}}"></td>
+        <td><i>{{item.name}}</i></td>
+        <td>{{item.artist}}</td>
         <td>{{item.releaseDate}}</td>
-      <td><button value="View Details"></button></td>
-      <td>{{item.releaseDate}}</td>
-      <td>
-        <a class="btn btn-primary btn-sm" href="/#/details" ng-click="setIndexForDetails($index, mediaResource)">View</a>
-      </td>
-    </tr>
-  </tbody>
-</table> -->
+        <td>
+          <a class="btn btn-primary btn-sm" href="/#/details" ng-click="setIndexForDetails($index, mediaResource)">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-<!-- We can use this to display raw JSON if the user selects a button on the navbar -->
-<pre>Data = {{items | json}}</pre>
+  <!-- We can use this to display raw JSON if the user selects a button on the navbar -->
+  <!-- <pre>Data = {{items | json}}</pre> -->
 
-<div class="footer">
-  <p><span class="glyphicon glyphicon-heart"></span> Ashish, Rodrigo, Andreas </p>
+  <div class="footer">
+    <p><span class="glyphicon glyphicon-heart"></span> Ashish, Rodrigo, Andreas </p>
+  </div>
 </div>
+

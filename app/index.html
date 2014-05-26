@@ -23,8 +23,16 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container" ng-view="">
-    </div>
+
+    <!-- To enable animations for page transitions:
+        bower install angular-animate
+        Add <script src="bower_components/angular-animate/angular-animate.js"></script> below
+        Add 'ngAnimate' as a dependency for our app in app.js (i.e. angular.module('myApp', ['ngAnimate']);)
+        Uncomment animation css code in main.scss
+        Swap commented out div with the uncommented one below for ng-view injection -->
+
+    <!-- <div class="page {{ pageClass }}" ng-view></div> -->
+    <div class="container" ng-view=""></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -64,6 +72,7 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
